@@ -9,7 +9,7 @@ This repository contains implementations of various machine learning regression 
 
 ### Features 
 - **Linear Regression**: Simple Linear Regression.(uses only one input feature for prediction, such as predicting house price based only on area)
-- **Multiple Linear Regression.(uses multiple input features, such as predicting house price based on area, number of rooms, construction year, and location)
+- **Linear Regression**: Multiple Linear Regression.(uses multiple input features, such as predicting house price based on area, number of rooms, construction year, and location)
 - **Non-Linear Regression**: Polynomial Regression.(fits a curve to the data by adding powers of the input features)
 - **Advanced Models**: Decision Trees, Random Forest.(will be explained in the next sections)
 - **Data Preprocessing**: Handling missing values, feature scaling, and data visualization.
