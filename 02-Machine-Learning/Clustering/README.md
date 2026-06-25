@@ -1,4 +1,4 @@
-# Clustering Project
+# Clustering
 
 ## Overview
 
