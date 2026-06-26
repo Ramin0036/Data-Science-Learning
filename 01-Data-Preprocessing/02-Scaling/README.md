@@ -1,51 +1,169 @@
-Data Scaling Techniques for Machine Learning
-This repository provides a comprehensive implementation and comparison of various data scaling and normalization techniques. Scaling is a critical preprocessing step in machine learning that ensures features contribute equally to the model’s performance and speeds up the convergence of gradient-based algorithms.
+# 📊 Data Scaling Techniques for Machine Learning
 
-📋 Table of Contents
-Overview
-Implemented Methods
-Manual Max Scaling
-Min-Max Scaler
-Standard Scaler
-Normalizer
-Installation & Usage
-Overview
-In most machine learning workflows, features have different units and scales. This discrepancy can lead to biased models or slow optimization. This project demonstrates four primary ways to bring features into a comparable range using Python and Scikit-learn.
+This repository provides a comprehensive implementation and comparison of various **data scaling and normalization techniques** used in Machine Learning.
 
-Implemented Methods
+Feature scaling is a critical preprocessing step that ensures all features contribute equally to model performance and helps improve the convergence speed of gradient-based algorithms.
 
+---
 
-1. Manual Max Scaling
-The simplest form of scaling involves dividing every data point by the maximum value found in the dataset. This transforms the data into a relative scale where the largest value becomes 1.0.
+## 📋 Table of Contents
 
-Best for: Quick transformations where the relative magnitude to the maximum value is the only concern.
+- [Overview](#overview)
+- [Implemented Methods](#implemented-methods)
+  - [Manual Max Scaling](#1-manual-max-scaling)
+  - [Min-Max Scaler](#2-min-max-scaler)
+  - [Standard Scaler](#3-standard-scaler-standardization)
+  - [Normalizer](#4-normalizer)
+- [Installation & Usage](#installation--usage)
+- [Requirements](#requirements)
 
+---
 
-2. Min-Max Scaler
-The Min-Max Scaler transforms features by scaling them to a fixed range, typically between 0 and 1.
-It preserves the original distribution of the data while ensuring that no single feature dominates others due to its scale.
+## 📌 Overview
 
-How it works: It subtracts the minimum value of the feature and divides it by the range (maximum - minimum).
-Key Advantage: It is highly effective for algorithms that do not assume a specific distribution (like K-Nearest Neighbors or Neural Networks).
+In most Machine Learning workflows, features often have different units and value ranges. 
 
+For example:
 
-3. Standard Scaler (Standardization)
-Standardization rescales the data so that it has a mean of 0 and a standard deviation of 1. Unlike Min-Max scaling, it does not bound values to a specific range, which can be an advantage if your data contains outliers.
+- Age may range from `0 - 100`
+- Income may range from `20,000 - 200,000`
+- Temperature may range from `-10 - 40`
 
-How it works: It centers the data by subtracting the mean and then scales it by dividing by the standard deviation.
-Key Advantage: Essential for algorithms that assume a Gaussian (Normal) distribution, such as Support Vector Machines (SVM), Linear Regression, and Principal Component Analysis (PCA).
+These differences can negatively affect model performance because some features may dominate others.
 
- 
-4. Normalizer
-While the previous methods scale features (columns), the Normalizer scales individual samples (rows). It rescales each observation so that the resulting vector has a unit norm (a length of 1).
+This project demonstrates four common techniques for bringing features into a comparable scale using **Python** and **Scikit-learn**.
 
-How it works: Each sample is scaled independently of other samples so that the norm (L1, L2, or Max) of the row equals 1.
-Key Advantage: This is particularly useful in text classification or clustering (like Latent Semantic Analysis) where the direction of the data vector matters more than its absolute magnitude.
+---
 
+# 🚀 Implemented Methods
 
-Installation & Usage
-Prerequisites
-Ensure you have Python installed along with the following libraries:
+## 1. Manual Max Scaling
+
+Manual Max Scaling is the simplest scaling approach.
+
+Each data point is divided by the maximum value in the dataset:
+
+\[
+X_{scaled} = \frac{X}{X_{max}}
+\]
+
+### Example:
+
+The largest value in the dataset becomes `1.0`, and all other values are transformed proportionally.
+
+### ✅ Best For:
+
+- Quick transformations
+- Comparing values relative to the maximum value
+
+---
+
+## 2. Min-Max Scaler
+
+The **Min-Max Scaler** transforms features into a fixed range, usually between `0` and `1`.
+
+Formula:
+
+\[
+X_{scaled} = \frac{X - X_{min}}{X_{max}-X_{min}}
+\]
+
+### How It Works:
+
+- Subtracts the minimum value of each feature
+- Divides by the feature range
+
+### Advantages:
+
+✅ Keeps the original distribution  
+✅ Produces values between 0 and 1  
+✅ Works well with algorithms that do not assume a specific data distribution
+
+### Common Use Cases:
+
+- K-Nearest Neighbors (KNN)
+- Neural Networks
+- Distance-based algorithms
+
+---
+
+## 3. Standard Scaler (Standardization)
+
+Standardization transforms the data so that:
+
+- Mean = `0`
+- Standard Deviation = `1`
+
+Formula:
+
+\[
+X_{scaled} = \frac{X-\mu}{\sigma}
+\]
+
+Where:
+
+- `μ` = Mean of the feature
+- `σ` = Standard deviation
+
+### How It Works:
+
+1. Centers data by subtracting the mean
+2. Scales values using standard deviation
+
+### Advantages:
+
+✅ Suitable for normally distributed data  
+✅ Handles features with different units  
+✅ Does not limit values to a fixed range
+
+### Common Use Cases:
+
+- Support Vector Machines (SVM)
+- Linear Regression
+- Principal Component Analysis (PCA)
+
+---
+
+## 4. Normalizer
+
+Unlike the previous techniques that scale **features (columns)**, the Normalizer scales **individual samples (rows)**.
+
+Each sample is transformed so that its vector length becomes equal to `1`.
+
+Supported norms:
+
+- L1 Norm
+- L2 Norm
+- Max Norm
+
+### How It Works:
+
+Each row is normalized independently:
+
+\[
+X_{scaled} = \frac{X}{||X||}
+\]
+
+### Advantages:
+
+✅ Useful when vector direction is more important than magnitude  
+✅ Commonly used in text and document processing
+
+### Common Use Cases:
+
+- Text Classification
+- Clustering
+- Latent Semantic Analysis (LSA)
+
+---
+
+# ⚙️ Installation & Usage
+
+## Prerequisites
+
+Make sure you have Python installed.
+
+Install the required libraries:
+
+```bash
 pip install numpy pandas scikit-learn
-
-Author: [Your Name/Handle]
