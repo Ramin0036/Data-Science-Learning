@@ -2,7 +2,7 @@
 
 This repository provides a comprehensive implementation and comparison of various **data scaling and normalization techniques** used in Machine Learning.
 
-Feature scaling is a critical preprocessing step that ensures all features contribute equally to model performance and helps improve the convergence speed of gradient-based algorithms.
+Feature scaling is a critical preprocessing step that ensures all features contribute equally to model performance and improves the convergence speed of gradient-based algorithms.
 
 ---
 
@@ -19,9 +19,9 @@ Feature scaling is a critical preprocessing step that ensures all features contr
 
 ---
 
-## 📌 Overview
+# 📌 Overview
 
-In most Machine Learning workflows, features often have different units and value ranges. 
+In most Machine Learning workflows, features often have different units and value ranges.
 
 For example:
 
@@ -31,7 +31,7 @@ For example:
 
 These differences can negatively affect model performance because some features may dominate others.
 
-This project demonstrates four common techniques for bringing features into a comparable scale using **Python** and **Scikit-learn**.
+This repository demonstrates four common techniques for bringing features into a comparable scale using **Python** and **Scikit-learn**.
 
 ---
 
@@ -41,15 +41,33 @@ This project demonstrates four common techniques for bringing features into a co
 
 Manual Max Scaling is the simplest scaling approach.
 
-Each data point is divided by the maximum value in the dataset:
+Each data point is divided by the maximum value found in the dataset.
 
-\[
+Formula:
+
+$$
 X_{scaled} = \frac{X}{X_{max}}
-\]
+$$
+
+### How It Works:
+
+- Finds the maximum value in the dataset.
+- Divides every value by that maximum value.
+- The largest value becomes `1.0`.
 
 ### Example:
 
-The largest value in the dataset becomes `1.0`, and all other values are transformed proportionally.
+Original values:
+
+```
+[10, 20, 40]
+```
+
+After scaling:
+
+```
+[0.25, 0.5, 1.0]
+```
 
 ### ✅ Best For:
 
@@ -58,26 +76,27 @@ The largest value in the dataset becomes `1.0`, and all other values are transfo
 
 ---
 
-## 2. Min-Max Scaler
+# 2. Min-Max Scaler
 
 The **Min-Max Scaler** transforms features into a fixed range, usually between `0` and `1`.
 
 Formula:
 
-\[
-X_{scaled} = \frac{X - X_{min}}{X_{max}-X_{min}}
-\]
+$$
+X_{scaled} = \frac{X - X_{min}}{X_{max} - X_{min}}
+$$
 
 ### How It Works:
 
-- Subtracts the minimum value of each feature
-- Divides by the feature range
+- Subtracts the minimum value of each feature.
+- Divides by the feature range (`max - min`).
+- Maps values into a fixed interval.
 
 ### Advantages:
 
 ✅ Keeps the original distribution  
-✅ Produces values between 0 and 1  
-✅ Works well with algorithms that do not assume a specific data distribution
+✅ Produces values between `0` and `1`  
+✅ Prevents features with larger values from dominating
 
 ### Common Use Cases:
 
@@ -87,34 +106,36 @@ X_{scaled} = \frac{X - X_{min}}{X_{max}-X_{min}}
 
 ---
 
-## 3. Standard Scaler (Standardization)
+# 3. Standard Scaler (Standardization)
 
-Standardization transforms the data so that:
+Standardization transforms data so that it has:
 
 - Mean = `0`
 - Standard Deviation = `1`
 
 Formula:
 
-\[
-X_{scaled} = \frac{X-\mu}{\sigma}
-\]
+$$
+X_{scaled} = \frac{X - \mu}{\sigma}
+$$
 
 Where:
 
-- `μ` = Mean of the feature
-- `σ` = Standard deviation
+- $\mu$ = Mean of the feature
+- $\sigma$ = Standard deviation
 
 ### How It Works:
 
-1. Centers data by subtracting the mean
-2. Scales values using standard deviation
+1. Calculates the mean of each feature.
+2. Subtracts the mean from every value.
+3. Divides by the standard deviation.
 
 ### Advantages:
 
 ✅ Suitable for normally distributed data  
 ✅ Handles features with different units  
-✅ Does not limit values to a fixed range
+✅ Does not restrict values to a fixed range  
+✅ Less affected by scale differences
 
 ### Common Use Cases:
 
@@ -124,13 +145,23 @@ Where:
 
 ---
 
-## 4. Normalizer
+# 4. Normalizer
 
-Unlike the previous techniques that scale **features (columns)**, the Normalizer scales **individual samples (rows)**.
+Unlike previous scaling methods that operate on **features (columns)**, the Normalizer works on **individual samples (rows)**.
 
-Each sample is transformed so that its vector length becomes equal to `1`.
+It scales each sample independently so that the vector length becomes equal to `1`.
 
-Supported norms:
+Formula:
+
+$$
+X_{scaled} = \frac{X}{||X||}
+$$
+
+Where:
+
+- `||X||` represents the norm of the vector.
+
+### Supported Norms:
 
 - L1 Norm
 - L2 Norm
@@ -138,16 +169,13 @@ Supported norms:
 
 ### How It Works:
 
-Each row is normalized independently:
-
-\[
-X_{scaled} = \frac{X}{||X||}
-\]
+Each row is normalized independently without considering other samples.
 
 ### Advantages:
 
 ✅ Useful when vector direction is more important than magnitude  
-✅ Commonly used in text and document processing
+✅ Commonly used in text and document processing  
+✅ Works well with sparse data
 
 ### Common Use Cases:
 
@@ -167,3 +195,6 @@ Install the required libraries:
 
 ```bash
 pip install numpy pandas scikit-learn
+# 📄 License
+
+This project is open-source and available under the MIT License.
