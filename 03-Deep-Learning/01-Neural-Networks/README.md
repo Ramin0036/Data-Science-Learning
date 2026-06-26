@@ -2,100 +2,219 @@
 
 ## Overview
 
-Artificial Neural Networks (ANNs) are one of the most powerful machine learning models inspired by the structure of the human brain. They consist of interconnected layers of neurons that learn complex patterns from data through training.
+Artificial Neural Networks (ANNs) are machine learning models inspired by the human brain. They consist of interconnected neurons organized into layers that learn patterns from data.
 
-Neural networks are widely used in classification, regression, computer vision, natural language processing, and many other artificial intelligence applications.
+Neural networks are widely used for classification, regression, computer vision, natural language processing, and many other AI applications.
 
-This project introduces the fundamental concepts required to build, train, and optimize neural network models using TensorFlow/Keras.
+This project introduces the essential concepts required to build, train, evaluate, and regularize neural network models using TensorFlow/Keras.
 
 ---
 
 # Building a Neural Network Model
 
-A neural network model is constructed by stacking multiple layers, where each layer learns increasingly complex representations of the input data.
-
-Typical layers include:
+A neural network is typically composed of:
 
 - Input Layer
-- Hidden Layers
+- Hidden Layer(s)
 - Output Layer
 
-Each neuron receives input values, applies weights and biases, passes the result through an activation function, and forwards the output to the next layer.
+Each neuron receives inputs, applies weights and a bias, computes a weighted sum, and passes the result through an activation function.
 
 ---
 
 # Activation Functions
 
-Activation functions introduce non-linearity into neural networks, enabling them to learn complex relationships.
+Activation functions introduce non-linearity, enabling neural networks to learn complex relationships.
 
-## ReLU (Rectified Linear Unit)
+## 1. ReLU (Rectified Linear Unit)
 
-```text
-f(x) = max(0, x)
-```
+Formula:
 
-### Advantages
+$$
+f(x)=\max(0,x)
+$$
 
-- Fast and computationally efficient.
-- Helps reduce the vanishing gradient problem.
-- Most commonly used in hidden layers.
+**Output Range:** `[0,+∞)`
 
----
+**Common Usage**
 
-## Sigmoid
+- Hidden Layers
+- CNNs
+- Deep Neural Networks
 
-```text
-f(x) = 1 / (1 + e^(-x))
-```
+**Advantages**
 
-### Advantages
+- Fast computation
+- Reduces vanishing gradients
+- Most widely used hidden-layer activation
 
-- Produces outputs between 0 and 1.
-- Suitable for binary classification output layers.
+**Limitation**
 
-### Limitations
-
-- Suffers from vanishing gradients.
-- Slower convergence.
+- May suffer from the Dead ReLU problem.
 
 ---
 
-## Softmax
+## 2. Leaky ReLU
 
-Softmax converts outputs into probability distributions whose values sum to one.
+Formula:
 
-### Applications
+$$
+f(x)=
+\begin{cases}
+x,&x>0\\
+\alpha x,&x\le0
+\end{cases}
+$$
 
-- Multi-class classification.
-- Output layer for categorical prediction.
+**Output Range:** `(-∞,+∞)`
+
+**Common Usage**
+
+- Hidden Layers
+- Alternative to ReLU
+
+**Advantages**
+
+- Prevents dead neurons
+- Better gradient flow
 
 ---
 
-## Tanh
+## 3. ELU (Exponential Linear Unit)
 
-```text
-f(x) = tanh(x)
-```
+Formula:
 
-### Advantages
+$$
+f(x)=
+\begin{cases}
+x,&x>0\\
+\alpha(e^x-1),&x\le0
+\end{cases}
+$$
 
-- Outputs range between -1 and 1.
-- Zero-centered activation.
+**Common Usage**
 
-### Limitations
+- Hidden Layers
+- Deep Networks
 
-- Can also suffer from vanishing gradients.
+**Advantages**
+
+- Faster convergence
+- Reduces bias shift
+
+---
+
+## 4. Sigmoid
+
+Formula:
+
+$$
+f(x)=\frac{1}{1+e^{-x}}
+$$
+
+**Output Range:** `(0,1)`
+
+**Common Usage**
+
+- Output Layer for Binary Classification
+
+**Advantages**
+
+- Produces probabilities
+
+**Limitations**
+
+- Vanishing gradient
+- Not recommended for hidden layers
+
+---
+
+## 5. Tanh
+
+Formula:
+
+$$
+f(x)=\tanh(x)
+$$
+
+**Output Range:** `(-1,1)`
+
+**Common Usage**
+
+- Hidden Layers (small networks)
+
+**Advantages**
+
+- Zero-centered output
+
+**Limitations**
+
+- Vanishing gradient
+
+---
+
+## 6. Softmax
+
+Formula:
+
+$$
+\text{Softmax}(x_i)=\frac{e^{x_i}}{\sum_j e^{x_j}}
+$$
+
+**Output Range:** `(0,1)` (outputs sum to 1)
+
+**Common Usage**
+
+- Output Layer for Multi-class Classification
+
+**Advantages**
+
+- Produces probability distribution across classes
+
+---
+
+## 7. Linear
+
+Formula:
+
+$$
+f(x)=x
+$$
+
+**Output Range:** `(-∞,+∞)`
+
+**Common Usage**
+
+- Output Layer for Regression
+
+**Advantages**
+
+- Preserves continuous values without bounding the output
+
+---
+
+## Activation Function Comparison
+
+| Function | Hidden Layer | Output Layer | Typical Task |
+|-----------|--------------|--------------|--------------|
+| ReLU | ✅ | ❌ | Hidden layers |
+| Leaky ReLU | ✅ | ❌ | Hidden layers |
+| ELU | ✅ | ❌ | Hidden layers |
+| Tanh | ✅ | ❌ | Small networks |
+| Sigmoid | ❌ | ✅ | Binary Classification |
+| Softmax | ❌ | ✅ | Multi-class Classification |
+| Linear | ❌ | ✅ | Regression |
 
 ---
 
 # Model Compilation
 
-Before training, a neural network must be compiled.
+Before training, a model must be compiled.
 
 Compilation defines:
 
-- Loss Function
 - Optimizer
+- Loss Function
 - Evaluation Metrics
 
 Example:
@@ -112,77 +231,85 @@ model.compile(
 
 # Optimizers
 
-Optimizers update the model weights during training to minimize the loss function.
+Optimizers update model weights to minimize the loss.
 
-## SGD (Stochastic Gradient Descent)
+## SGD
 
-Updates weights using the gradient of the loss function.
-
-### Advantages
-
-- Simple and memory efficient.
-- Suitable for many optimization problems.
-
----
+- Simple Gradient Descent
+- Stable and memory efficient
+- May converge slowly
 
 ## Adam
 
-Adaptive Moment Estimation (Adam) combines momentum and adaptive learning rates.
-
-### Advantages
-
-- Fast convergence.
-- Works well for most deep learning tasks.
-- Default optimizer in many applications.
-
----
+- Adaptive learning rate
+- Fast convergence
+- Default choice for most projects
 
 ## RMSprop
 
-Adjusts learning rates automatically for each parameter.
+- Adaptive learning rate
+- Performs well for sequential data and RNNs
 
-### Advantages
+## AdamW
 
-- Performs well on recurrent neural networks.
-- Stable convergence.
+- Adam with decoupled weight decay
+- Better regularization than Adam
+- Common in modern deep learning
+
+## Adagrad
+
+- Adapts learning rate for each parameter
+- Effective for sparse features
+- Learning rate may decay too quickly
+
+---
+
+## Optimizer Comparison
+
+| Optimizer | Adaptive LR | Fast Convergence | Typical Usage |
+|------------|------------|-----------------|---------------|
+| SGD | ❌ | Medium | General optimization |
+| Adam | ✅ | ✅ | Default choice |
+| RMSprop | ✅ | ✅ | RNNs |
+| AdamW | ✅ | ✅ | Modern deep learning |
+| Adagrad | ✅ | Medium | Sparse data |
 
 ---
 
 # Loss Functions
 
-The loss function measures the difference between predicted values and actual targets.
+Loss functions measure prediction error.
 
-Common loss functions include:
+| Loss Function | Task | Typical Output Layer |
+|---------------|------|----------------------|
+| Binary Crossentropy | Binary Classification | Sigmoid |
+| Categorical Crossentropy | Multi-class Classification (One-Hot Labels) | Softmax |
+| Sparse Categorical Crossentropy | Multi-class Classification (Integer Labels) | Softmax |
+| Mean Squared Error (MSE) | Regression | Linear |
+| Mean Absolute Error (MAE) | Regression | Linear |
+| Huber Loss | Regression (robust to outliers) | Linear |
 
-| Loss Function | Application |
-|---------------|-------------|
-| Binary Crossentropy | Binary Classification |
-| Categorical Crossentropy | Multi-class Classification |
-| Sparse Categorical Crossentropy | Integer Labels |
-| Mean Squared Error (MSE) | Regression |
-| Mean Absolute Error (MAE) | Regression |
-
-A lower loss indicates better model performance.
+Lower loss indicates better model performance.
 
 ---
 
 # Accuracy
 
-Accuracy measures the proportion of correctly classified samples.
+Accuracy measures the proportion of correctly predicted samples.
 
-```text
-Accuracy = Correct Predictions / Total Predictions
-```
+Formula:
+
+$$
+Accuracy=\frac{Correct\ Predictions}{Total\ Predictions}
+$$
 
 Higher accuracy generally indicates better classification performance.
 
 ---
 
-# Model Training (Fit)
+# Model Training (fit)
 
-The `fit()` function trains the neural network using the training dataset.
-
-Example:
+Training is performed using:
 
 ```python
 model.fit(
@@ -194,100 +321,84 @@ model.fit(
 )
 ```
 
-During training, the model repeatedly updates its weights to minimize the loss function.
+The model updates its weights after each batch to minimize the loss.
 
 ---
 
 # Epoch
 
-An **Epoch** represents one complete pass of the entire training dataset through the neural network.
+An **Epoch** is one complete pass through the entire training dataset.
 
-- More epochs allow the model to learn more.
-- Too many epochs may lead to overfitting.
+- More epochs improve learning.
+- Too many epochs may cause overfitting.
 
 ---
 
 # Batch Size
 
-Batch Size is the number of training samples processed before updating the model parameters.
+Batch Size is the number of samples processed before updating model weights.
 
-Common values include:
+Common values:
 
 - 16
 - 32
 - 64
 - 128
 
-Smaller batch sizes require more updates but may improve generalization.
-
 ---
 
 # Validation Data
 
-Validation data is a portion of the dataset used during training to evaluate the model on unseen data.
+Validation data is used during training to evaluate generalization.
+
+It is **not** used to update model weights.
 
 It helps monitor:
 
-- Model performance
+- Validation Loss
+- Validation Accuracy
 - Overfitting
-- Generalization ability
-
-Validation data is **not** used to update model weights.
 
 ---
 
 # Preventing Overfitting
 
-Overfitting occurs when a neural network memorizes the training data instead of learning general patterns, resulting in poor performance on unseen data.
+## Dropout
 
-Several techniques can reduce overfitting.
+Randomly disables a percentage of neurons during training.
 
----
+**Benefits**
 
-## 1. Dropout
-
-Dropout randomly disables a fraction of neurons during training.
-
-This forces the network to learn more robust representations instead of relying on specific neurons.
-
-### Advantages
-
-- Reduces overfitting.
-- Improves model generalization.
-- Easy to implement.
+- Reduces overfitting
+- Improves generalization
 
 ---
 
-## 2. Early Stopping
+## Early Stopping
 
-Early Stopping monitors validation performance during training.
+Stops training automatically when validation performance no longer improves.
 
-If the validation loss stops improving for several epochs, training is automatically stopped.
+**Benefits**
 
-### Advantages
-
-- Prevents unnecessary training.
-- Reduces overfitting.
-- Saves computational time.
+- Prevents overfitting
+- Saves training time
 
 ---
 
-## 3. Kernel Regularizer
+## Kernel Regularizer
 
-Kernel Regularization adds a penalty to large weight values during optimization.
+Adds penalties to large weights.
 
-Common regularization techniques include:
+Common types:
 
 - L1 Regularization
 - L2 Regularization
 
-These penalties encourage simpler models with better generalization.
+**Benefits**
 
-### Advantages
-
-- Reduces model complexity.
-- Prevents excessively large weights.
-- Improves generalization performance.
+- Simpler models
+- Better generalization
+- Reduces overfitting
 
 ---
 
@@ -304,8 +415,13 @@ These penalties encourage simpler models with better generalization.
 
 # Conclusion
 
-Artificial Neural Networks are powerful models capable of learning complex relationships from data. Building an effective neural network requires selecting appropriate activation functions, optimizers, loss functions, and training parameters such as epochs and batch size.
+Building an effective neural network requires selecting suitable activation functions, optimizers, loss functions, and training parameters.
 
-To improve generalization and avoid overfitting, techniques such as **Dropout**, **Early Stopping**, and **Kernel Regularization** are commonly employed.
+For most modern applications:
 
-Understanding these core concepts is essential for developing accurate and efficient deep learning models.
+- Hidden Layers → ReLU / Leaky ReLU / ELU
+- Binary Classification Output → Sigmoid
+- Multi-class Classification Output → Softmax
+- Regression Output → Linear activation
+
+Regularization techniques such as **Dropout**, **Early Stopping**, and **Kernel Regularization** improve model generalization and help prevent overfitting.
