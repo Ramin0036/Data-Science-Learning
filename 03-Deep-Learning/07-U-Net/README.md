@@ -1,9 +1,5 @@
 # U-Net: Deep Learning Architecture for Image Segmentation
 
-`<img src="assets/unet_banner.png" width="700">`{=html}
-```{=html}
-</p>
-```
 ## 📌 Overview
 
 U-Net is a Convolutional Neural Network (CNN) architecture designed for
