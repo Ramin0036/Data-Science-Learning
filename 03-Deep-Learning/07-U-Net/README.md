@@ -262,8 +262,3 @@ Combines:
 ❌ Complex scenes may require advanced architectures
 
 ------------------------------------------------------------------------
--   Attention mechanisms
--   Transformers
--   Vision Transformers
--   Self-supervised learning
--   Hybrid CNN architectures
