@@ -1,4 +1,3 @@
-````markdown
 # 🧠 Deep Learning
 
 This section covers the fundamental concepts and practical applications of **Deep Learning**, from basic neural networks to advanced architectures for Computer Vision and Natural Language Processing.
