@@ -37,9 +37,9 @@ xt ->|   RNN   |----> yt
 
 Formula:
 
-```
-h(t)=tanh(Wxh*x(t)+Whh*h(t-1)+b)
-```
+$$
+h_t=\tanh\!\left(W_{xh}x_t+W_{hh}h_{t-1}+b\right)
+$$
 
 ---
 
@@ -117,17 +117,17 @@ GRU has:
 
 Controls how much previous information remains.
 
-```
-z(t)=σ(Wz[h(t-1),x(t)])
-```
+$$
+z_t=\sigma\!\left(W_z\,[h_{t-1},x_t]+b_z\right)
+$$
 
 ## Reset Gate
 
 Controls ignored previous information.
 
-```
-r(t)=σ(Wr[h(t-1),x(t)])
-```
+$$
+r_t=\sigma\!\left(W_r\,[h_{t-1},x_t]+b_r\right)
+$$
 
 Architecture:
 
@@ -185,9 +185,9 @@ h(t), C(t)
 
 Removes unnecessary information.
 
-```
-$f(t)=σ(Wf[h(t-1),x(t)])$
-```
+$$
+f_t=\sigma\!\left(W_f\,[h_{t-1},x_t]+b_f\right)
+$$
 
 ## Input Gate
 
@@ -201,9 +201,9 @@ $$
 
 Controls output information.
 
-```
-o(t)=σ(Wo[h(t-1),x(t)])
-```
+$$
+o_t=\sigma\!\left(W_o\,[h_{t-1},x_t]+b_o\right)
+$$
 
 ---
 
