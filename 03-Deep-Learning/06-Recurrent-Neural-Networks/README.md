@@ -186,7 +186,7 @@ h(t), C(t)
 Removes unnecessary information.
 
 ```
-$$f(t)=σ(Wf[h(t-1),x(t)])$$
+$$ f(t)=σ(Wf[h(t-1),x(t)]) $$
 ```
 
 ## Input Gate
