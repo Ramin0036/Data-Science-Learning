@@ -32,13 +32,6 @@ Input Image → U-Net → Segmentation Mask
 
 # 🏗️ U-Net Architecture
 
-```{=html}
-<p align="center">
-```
-`<img src="assets/unet_architecture.png" width="800">`{=html}
-```{=html}
-</p>
-```
 U-Net has three main parts:
 
     U-Net
@@ -269,11 +262,6 @@ Combines:
 ❌ Complex scenes may require advanced architectures
 
 ------------------------------------------------------------------------
-
-# Future Improvements
-
-Possible improvements:
-
 -   Attention mechanisms
 -   Transformers
 -   Vision Transformers
