@@ -1,26 +1,5 @@
 # 🧠 RNN, GRU & LSTM Deep Learning Guide
 
-A complete educational guide to Recurrent Neural Networks, GRU and LSTM architectures.
-
-## 📚 Table of Contents
-- Introduction
-- RNN
-- RNN Architecture
-- Hidden State
-- BPTT
-- Vanishing & Exploding Gradient
-- GRU
-- GRU Gates
-- LSTM
-- LSTM Gates
-- Comparison
-- Applications
-- Project Structure
-- References
-- License
-
----
-
 # Introduction
 
 Recurrent Neural Networks are designed for sequential data such as text, speech and time series.
