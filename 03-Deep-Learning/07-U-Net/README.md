@@ -1,8 +1,5 @@
 # U-Net: Deep Learning Architecture for Image Segmentation
 
-```{=html}
-<p align="center">
-```
 `<img src="assets/unet_banner.png" width="700">`{=html}
 ```{=html}
 </p>
