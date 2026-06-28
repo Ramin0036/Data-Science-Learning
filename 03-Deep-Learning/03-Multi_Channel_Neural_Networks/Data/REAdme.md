@@ -1,14 +1,5 @@
 # 🧠 Multilayer Neural Networks (MLP)
 
-> An educational implementation and explanation of Multilayer Neural Networks (MLP) using Python.
-
-![Python](https://img.shields.io/badge/Python-3.9%2B-blue.svg)
-![License](https://img.shields.io/badge/License-MIT-green.svg)
-![Machine Learning](https://img.shields.io/badge/Machine-Learning-orange.svg)
-![Deep Learning](https://img.shields.io/badge/Deep-Learning-red.svg)
-
----
-
 # 📖 Overview
 
 This repository demonstrates the implementation and training of **Multilayer Neural Networks (MLPs)**, one of the most fundamental architectures in Deep Learning.
