@@ -193,9 +193,9 @@ $f(t)=σ(Wf[h(t-1),x(t)])$
 
 Stores new information.
 
-```
-i(t)=σ(Wi[h(t-1),x(t)])
-```
+$$
+i_t=\sigma\!\left(W_i\,[h_{t-1},x_t]+b_i\right)
+$$
 
 ## Output Gate
 
