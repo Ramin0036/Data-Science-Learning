@@ -114,13 +114,6 @@ Process:
 
 # 🔥 Skip Connections
 
-```{=html}
-<p align="center">
-```
-`<img src="assets/skip_connection.png" width="600">`{=html}
-```{=html}
-</p>
-```
 Skip connections are the key feature of U-Net.
 
 They transfer information directly from encoder layers to decoder
